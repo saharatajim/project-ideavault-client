@@ -4,6 +4,8 @@ dns.setServers(["8.8.8.8","8.8.4.4"])
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
+import Footer from "@/components/Footer";
+import Navbar from "@/components/navbar/Navbar";
 
 const robotoSans = Roboto({
   variable: "--font-robot-sans",
@@ -30,9 +32,9 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
-           
+           <Navbar/>
             {children}
-       
+            <Footer/>
           </ThemeProvider>
       </body>
     </html>
