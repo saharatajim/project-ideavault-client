@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar/Navbar";
+import { ToastContainer } from "react-toastify";
 
 const robotoSans = Roboto({
   variable: "--font-robot-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
            <Navbar/>
             {children}
             <Footer/>
+             <ToastContainer />
           </ThemeProvider>
       </body>
     </html>

@@ -2,39 +2,41 @@
 
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-// import { authClient } from "@/lib/auth-client";
-// import { toast } from "react-toastify";
-// import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+ import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 
 export default function SignInPage() {
-    // const router = useRouter();
+   const router = useRouter();
 
-//     const GoogleSignIn = async () => {
-//   await authClient.signIn.social({
-//     provider: "google",
-//   });
-//   toast.success("Sign In successfully completed")
-// };
+const handleGoogleLogin = async () => {
+    const { data, error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/" // Redirect after login
+    });
+    console.log({ data, error })
+};
 
     const handleSignin=async(e)=>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
         const {email,password} = Object.fromEntries(formData.entries());
         console.log(email,password);
-        //  const { data, error }=await authClient.signIn.email({
-        //  email,password
-        //  })
-        //  console.log({data, error });
-        //   if(data){
-        //   toast.success("your  signin completed")
-        //   setTimeout(()=>{
-        //     router.push("/")
-        //   },500)
+          const { data, error }=await authClient.signIn.email({
+         email,password
+         })
+         console.log({data, error });
+          if(data){
+           toast.success("your  signin completed")
+           setTimeout(()=>{
+             router.push("/")
+           },500)
     
-        // }
-        // if(error){
-        //    toast("your  signin failed")
-        // }
+         }
+         if(error){
+          toast("your  signin failed")
+         }
   
     }
   return (
@@ -82,7 +84,7 @@ export default function SignInPage() {
           <div className="mt-6">
             <button
 
-          
+          onClick={handleGoogleLogin}
               className="w-full flex items-center justify-center gap-2 px-4 py-2 border rounded-md bg-white text-gray-700 hover:bg-gray-50 transition"
             >
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
