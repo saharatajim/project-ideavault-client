@@ -3,26 +3,26 @@
 import React from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-// import { authClient } from "@/lib/auth-client";
-// import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const Profile = () => {
-//   const { data: session } = authClient.useSession();
+  const { data: session } = authClient.useSession();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
       const formData = new FormData(e.currentTarget)
         const {name,image} = Object.fromEntries(formData.entries());
         console.log(name,image);
-//    await authClient.updateUser({
-//      image,
-//     name
-//  })
-//  toast.success("Profile updated" )
+   await authClient.updateUser({
+     image,
+    name
+ })
+ toast.success("Profile updated" )
   };
 
   return (
-    <div className="w-[400px] pb-10 mx-auto mt-10 space-y-8 ">
+    <div className="w-[400px] pb-10 mx-auto mt-10 space-y-8">
       {/* Profile Display */}
       <Card>
         <CardHeader>
@@ -30,12 +30,12 @@ const Profile = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center space-x-4">
-            {/* <Avatar>
+            <Avatar>
               <AvatarImage src={session?.user?.image} alt={session?.user?.name} />
-            </Avatar> */}
+            </Avatar>
             <div>
-              <p className="font-medium">Tajom</p>
-              <p className="text-sm text-muted-foreground">email</p>
+              <p className="font-medium">{session?.user?.name}</p>
+              <p className="text-sm text-muted-foreground">{session?.user?.email}</p>
             </div>
           </div>
         </CardContent>
@@ -64,7 +64,7 @@ const Profile = () => {
               name="name"
               type="text"
               placeholder="Enter your name"
-         
+              defaultValue={session?.user?.name}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -82,7 +82,7 @@ const Profile = () => {
               name="image"
               type="text"
               placeholder="https://example.com/avatar.png"
-           
+              defaultValue={session?.user?.image}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
