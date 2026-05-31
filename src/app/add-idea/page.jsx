@@ -7,18 +7,19 @@ import React from 'react';
 const AddIdea = () => {
 const { data: session } = authClient.useSession();
 console.log(session?.user?.name,"seassion")
-
+const user=session?.user
   const onSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const ideas = Object.fromEntries(formData.entries())
+    
 
  const modifieddata = {
       ...ideas,
-      user: {
-        name: session?.user?.name,
-        image: session?.user?.image
-      }
+       userId:user?.id ,
+       userName:user?.name ,
+       userImage:user?.image
+      
     }
 
     console.log(modifieddata);
