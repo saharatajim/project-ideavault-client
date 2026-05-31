@@ -2,9 +2,11 @@
 
 import { addIdeas } from '@/lib/action';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const AddIdea = () => {
+  const router=useRouter()
 const { data: session } = authClient.useSession();
 console.log(session?.user?.name,"seassion")
 const user=session?.user
@@ -24,6 +26,8 @@ const user=session?.user
 
     console.log(modifieddata);
           addIdeas(modifieddata)
+          router.push("/ideas")
+
 
   }
   return (

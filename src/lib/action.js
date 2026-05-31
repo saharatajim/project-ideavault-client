@@ -26,3 +26,8 @@
     const SelectedIdea=await res.json()
     return SelectedIdea
    }
+   export const getMyIdea= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`)
+    const myIdea=await res.json()
+    return myIdea
+   }
