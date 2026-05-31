@@ -1,7 +1,8 @@
 
 import Image from "next/image";
+import { IdeaDeleteAlert } from "./IdeaDeleteAlert";
 
-const MyideaCard=async ({IdeaCard})=>{
+const MyideaCard=async ({IdeaCard,userId})=>{
 console.log(IdeaCard)
   return(
 
@@ -33,12 +34,11 @@ console.log(IdeaCard)
       
             {/* Buttons */}
             <div className="flex gap-4 mt-4">
-              <button className="flex-1 bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-md transition">
+              <button className="w-25 bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-md transition">
                 Edit
               </button>
-              <button className="flex-1 bg-cyan-400 hover:bg-cyan-500 text-white py-2 rounded-md transition">
-                Delete
-              </button>
+              
+              <IdeaDeleteAlert userId={userId}/>
             </div>
           </div>
         </div>

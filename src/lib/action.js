@@ -31,3 +31,14 @@
     const myIdea=await res.json()
     return myIdea
    }
+   export const deleteMyIdea= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`,{
+        method:"DELETE",
+         headers: {
+        'content-type': 'application/json'
+      },
+      
+      })
+    const deleteIdea=await res.json()
+    return deleteIdea
+   }
