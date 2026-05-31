@@ -6,10 +6,12 @@ import {
   NativeSelectOption,
 } from "@/components/ui/native-select"
 import IdeaCard from '@/components/IdeaCard';
+import { getIdeas } from '@/lib/action';
 
-const IdeasPage = () => {
-    const test="text"
-    console.log(test);
+const IdeasPage = async() => {
+    
+    const allIdeas=await getIdeas()
+    console.log(allIdeas)
     return (
         <div className='container mx-auto'>
             <div className='conatiner mx-auto dark:bg-gray-900 bg-base-200 p-10 ' >
@@ -50,12 +52,11 @@ const IdeasPage = () => {
 </div>
                       </div>
                       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                       <IdeaCard/>
-                       <IdeaCard/>
-                       <IdeaCard/>
-                       <IdeaCard/>
-                       <IdeaCard/>
-                       <IdeaCard/>
+                        {
+                          allIdeas.map((idea,index)=>
+                          <IdeaCard key={index} idea={idea}/>)
+                        }
+                    
                      
                       </div>
                    </div>
