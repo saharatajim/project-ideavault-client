@@ -13,10 +13,10 @@ import {
 import { deleteMyIdea } from "@/lib/action"
 
 export function IdeaDeleteAlert({userId}) {
-    console.log(userId,"from idea alert")
+ 
     const handleDeleteCard=async()=>{
         await deleteMyIdea(userId)
-        window.location.reload()
+          window.location.reload()
     }
   return (
     <AlertDialog>
@@ -33,7 +33,7 @@ Delete              </div>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction><div onClick={handleDeleteCard}>Continue</div></AlertDialogAction>
+          <AlertDialogAction><button onClick={handleDeleteCard}>Continue</button></AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

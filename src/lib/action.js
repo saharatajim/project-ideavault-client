@@ -42,3 +42,15 @@
     const deleteIdea=await res.json()
     return deleteIdea
    }
+   export const updateMyIdea= async(id,data)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`,{
+        method:"PATCH",
+         headers: {
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(data)
+      
+      })
+    const updateIdea=await res.json()
+    return updateIdea
+   }

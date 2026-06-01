@@ -1,6 +1,8 @@
 
 import Image from "next/image";
 import { IdeaDeleteAlert } from "./IdeaDeleteAlert";
+import { UpdateModal } from "./UpdateModal";
+
 
 const MyideaCard=async ({IdeaCard,userId})=>{
 console.log(IdeaCard)
@@ -34,10 +36,8 @@ console.log(IdeaCard)
       
             {/* Buttons */}
             <div className="flex gap-4 mt-4">
-              <button className="w-25 bg-blue-400 hover:bg-blue-500 text-white py-2 rounded-md transition">
-                Edit
-              </button>
-              
+           
+             <UpdateModal IdeaCard={IdeaCard} />
               <IdeaDeleteAlert userId={userId}/>
             </div>
           </div>
