@@ -10,11 +10,12 @@ const AddIdea = () => {
 const { data: session } = authClient.useSession();
 console.log(session?.user?.name,"seassion")
 const user=session?.user
+console.log(user)
   const onSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const ideas = Object.fromEntries(formData.entries())
-    
+    console.log(user)
 
  const modifieddata = {
       ...ideas,

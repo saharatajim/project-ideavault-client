@@ -54,3 +54,33 @@
     const updateIdea=await res.json()
     return updateIdea
    }
+
+  export const postComments=async(comments)=>{
+   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(comments)
+    })
+    const data = await res.json()
+    console.log(data, "dta")
+
+   }
+
+      export const getComments=async()=>{
+    const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`)
+    const comments=await res.json()
+    return comments
+   }
+   export const deleteComment= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,{
+        method:"DELETE",
+         headers: {
+        'content-type': 'application/json'
+      },
+      
+      })
+    const deleteData=await res.json()
+    return deleteData
+   }
