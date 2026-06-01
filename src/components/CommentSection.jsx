@@ -6,14 +6,16 @@ import { headers } from "next/headers";
 import { getComments } from "@/lib/action";
 import CommentAction from "./CommentAction";
 
- const CommentSection= async()=> {
+ const CommentSection= async({SelectedIdea})=> {
+  
 const session = await auth.api.getSession({
     headers: await headers() 
 })
 
  const user=session?.user 
+ const selectedIdeaById=SelectedIdea?._id
  
- const allCommnets=await getComments()
+ const allCommnets=await getComments(selectedIdeaById)
 console.log(allCommnets)
 
 
@@ -22,13 +24,16 @@ console.log(allCommnets)
       <h2 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Comments</h2>
 
       {/* Input */}
-     <AddComments user={user}/>
+     <AddComments selectedIdeaById={selectedIdeaById} user={user}/>
 
       {/* Example List */}
       <div className="space-y-3">
 {
   allCommnets.map((comm,ind)=>
   {
+    console.log(comm?.userImage)
+
+
   const isoDate = comm.newDate
 const dateObj = new Date(isoDate)
 const options = { day: "2-digit", month: "short", year: "numeric" }
@@ -38,14 +43,14 @@ return(
             <div className="p-3 rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600">
           <div className="flex items-center gap-3 mb-2">
             <Image
-            alt="{comm.user.name}"
-              src={comm.user.image}
+            alt={comm?.userName}
+              src={comm?.userImage}
               width={32}
               height={32}
               className="rounded-full border"
             />
             <div>
-              <p className="font-medium">{comm.user.name}</p>
+              <p className="font-medium">{comm?.userName}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">{formattedDate}</p>
             </div>
           </div>

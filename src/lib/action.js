@@ -54,7 +54,7 @@
     const updateIdea=await res.json()
     return updateIdea
    }
-
+// comment collenction
   export const postComments=async(comments)=>{
    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
       method: "POST",
@@ -68,8 +68,8 @@
 
    }
 
-      export const getComments=async()=>{
-    const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`)
+      export const getComments=async(ideaId)=>{
+    const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${ideaId}`)
     const comments=await res.json()
     return comments
    }
@@ -83,4 +83,16 @@
       })
     const deleteData=await res.json()
     return deleteData
+   }
+    export const updateMyComment= async(id,data)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,{
+        method:"PATCH",
+         headers: {
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(data)
+      
+      })
+    const updateIdea=await res.json()
+    return updateIdea
    }

@@ -81,7 +81,7 @@ const IdeaDetailsPage = async({params}) => {
       </section>
 
       {/* Comments */}
-      <CommentSection />
+      <CommentSection SelectedIdea={SelectedIdea}/>
     </div>
   );
 };

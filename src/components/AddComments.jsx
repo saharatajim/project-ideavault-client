@@ -2,7 +2,7 @@
 
 import { postComments } from "@/lib/action";
 
-const AddComments=({user})=>{
+const AddComments=({user,selectedIdeaById})=>{
    
   const onSubmit =  async(e) => {
     e.preventDefault()
@@ -10,12 +10,16 @@ const AddComments=({user})=>{
     const comments = Object.fromEntries(formData.entries())
   const modifiedCommentsdata = {
   ...comments,
-  user,
+  selectedIdeaById,
+  userId:user.id,
+  userName:user.name,
+  userImage:user.image,
   newDate: new Date().toISOString()   
 }
 
   
      await postComments(modifiedCommentsdata)
+     window.location.reload()
   }
     return(
  <form onSubmit={onSubmit} className="flex gap-2 mb-4">
